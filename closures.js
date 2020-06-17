@@ -22,13 +22,13 @@ function outer() {
   Invoke outer saving the return value into another variable called 'inner'.
 */
   
-// Code Here
+let inner = outer()
 
 
 
 //Once you do that, invoke inner.
 
-//Code Here
+inner()
 
 
 
@@ -51,7 +51,9 @@ function callFriend(name) {
   (HINT: You will need to pass in arguments to both function invocations)
 */
 
-//Code Here
+let callJake = callFriend('Jake')
+callJake(dial, 435-555-9248)
+
 
 
 
@@ -61,7 +63,17 @@ function callFriend(name) {
   Write a function called makeCounter that makes the following code work properly.
 */
 
-//Code Here
+  function makeCounter(name) {
+    let count = 0;
+    function addOne(){
+      return count += 1;
+    };
+    return addOne;
+    
+    }
+
+  
+  
 
 
 
@@ -78,19 +90,28 @@ function callFriend(name) {
 
 /*
   Inside the function called counterFactory return two functions that implement up/down counter.
-  The first function is called inc, this function is responsible for incrementing the value once and returning the updated value.
-  The second function is called dec, this function is responsible for decrementing the value by one and returning the updated value.
+  The first function is called inc, this function is responsible for incrementing the value once and returning 
+  the updated value.
+  The second function is called dec, this function is responsible for decrementing the value by one and returning 
+  the updated value.
   You will need to use the module pattern to achieve this.
   Information on the module pattern available here: 
   http://stackoverflow.com/questions/17776940/javascript-module-pattern-with-example?answertab=votes#tab-top
 */
-
 function counterFactory(value) {
-  // Code here.
+  let result = 0;
+ return {
+    inc: function(){
+      return result += 1
+    },
+    dec: function(){
+      return result -= 1
+   
+    }
 
-  return {
 
-  };
+  }
+ 
 }
 
 counter = counterFactory(10);
