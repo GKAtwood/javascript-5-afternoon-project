@@ -182,25 +182,25 @@ class ProgressiveManager extends Manager{
 */
 
 class Machine{
-  constructor(widgets_made_count, wear_and_tear_count, needs_reboot){
+  constructor(){
     this.widgets_made_count = 0;
     this.wear_and_tear_count = 0;
     this.needs_reboot = false;
   }
+
   makeWidgets(num){
      this.widgets_made_count += num;
-     if(this.wear_and_tear_count === 50){
-       return 
-     }
-    return this;
-  }
+     this.wear_and_tear_count += num/50
+     
+}
   fixMachine(){
-   return this.needs_reboot = true;
+     this.needs_reboot = true;
  }
  reboot() {
-  return function(){
-    this.wear_and_tear_count -= 10;
+  return () =>{
     this.needs_reboot = false;
+    this.wear_and_tear_count -= 10;
+    
   };
 }
 }
