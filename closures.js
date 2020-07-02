@@ -57,7 +57,7 @@ function callFriend(name) {
     both function invocations)
 */
 
-let callJake = callFriend('Jake')
+let callJake = callFriend("Jake")
 callJake( '435-555-9248');
 
 
@@ -150,17 +150,18 @@ function counterFactory(value) {
 function motivation( firstname, lastname ) {
   var welcomeText = "You're doing awesome, keep it up";
 
-function message(){
-    return 
+  function message(){
+    return welcomeText +' '+ firstname + ' ' + lastname;
 }
 
   //Uncommment this to return the value of your message function
-  //return message;
+  return message;
 }
 
 
 
 var greeting = motivation('Billy', 'Bob');
+getMessage();
  // 'You're doing awesome keep it up Billy Bob.
 
 
@@ -206,19 +207,19 @@ var module = (function() {
    secret number.
 */
 
-function secretNumber() {
-  var secret = 143;
+// function secretNumber() {
+//   var secret = 143;
 
-  return {
-  function addToSecret(){
-    return secret += 1;
-  };
-  function takeAwayFromSecret(){
-    return secret -= 1;
-  }
-  return secret
-  };
-}
+//   return {
+//   function addToSecret(){
+//     return secret += 1;
+//   };
+//   function takeAwayFromSecret(){
+//     return secret -= 1;
+//   }
+//   return secret
+//   };
+// }
 
 
 
@@ -242,11 +243,11 @@ function secretNumber() {
   Fix the code below to log the desired output.
 */
 
-function timeOutCounter() {
-  for (var i = 0; i <= 5; i++) {
-    setTimeout(function() {
-      console.log(i);
-    }, i * 1000);
-  }
-}
-timeOutCounter();
+// function timeOutCounter() {
+//   for (var i = 0; i <= 5; i++) {
+//     setTimeout(function() {
+//       console.log(i);
+//     }, i * 1000);
+//   }
+// }
+// timeOutCounter();
