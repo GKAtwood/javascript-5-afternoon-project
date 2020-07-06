@@ -28,9 +28,9 @@ let inner = outer();
 
 
 
-//Once you do that, invoke inner.
+// //Once you do that, invoke inner.
 
-inner();
+inner()
 
 
 
@@ -58,8 +58,7 @@ function callFriend(name) {
 */
 
 let callJake = callFriend("Jake")
-callJake( '435-555-9248');
-
+callJake('435-555-9248')
 
 
 
@@ -70,26 +69,24 @@ callJake( '435-555-9248');
   following code work properly.
 */
 
-  function makeCounter(name) {
-    let count = 0;
-    function addOne(){
-      return count += 1;
-    };
-    return addOne;
-    
-    }
-
+function makeCounter(){
+  let number = 0
+  return function inner(){
+    number++ 
+    return number
+  }
+  }
   
   
 
 
 
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+  var count = makeCounter();
+  // count(); // 1
+  // count(); // 2
+  // count(); // 3
+  // count(); // 4
 
 
 
@@ -110,24 +107,24 @@ callJake( '435-555-9248');
    this.
   Information on the module pattern available here: 
   http://stackoverflow.com/questions/17776940/javascript-module-pattern-with-example?answertab=votes#tab-top
-*/
+// */
 function counterFactory(value) {
-  let result = 0;
- return {
+ let startingNumber = value
+
+  return {
     inc: function(){
-      return result += 1
+      startingNumber++
+      return startingNumber
     },
     dec: function(){
-      return result -= 1
-   
+      startingNumber--
+      return startingNumber
     }
 
-
-  }
- 
+  };
 }
 
-// counter = counterFactory(10);
+counter = counterFactory(10);
 // counter.inc() // 11
 // counter.inc() // 12
 // counter.inc() // 13
@@ -148,19 +145,23 @@ function counterFactory(value) {
 */
 
 function motivation( firstname, lastname ) {
-  var welcomeText = "You're doing awesome, keep it up";
-
-  function message(){
-    return welcomeText +' '+ firstname + ' ' + lastname;
+  let welcomeText = "You're doing awesome, keep it up";
+  let lastname = lastname
+  let firstname = firstname
+return function message(){
+  return welcomeText + " " + firstname + " " + lastname +"."
 }
-
-  //Uncommment this to return the value of your message function
+ 
   return message;
 }
 
+//   //Uncommment this to return the value of your message function
+//   return message;
+// }
 
 
-var greeting = motivation('Billy', 'Bob');
+
+let greeting = motivation('Billy', 'Bob');
 getMessage();
  // 'You're doing awesome keep it up Billy Bob.
 
@@ -187,10 +188,12 @@ var module = (function() {
   // Anything that is being returned is made public and can be invoked from
   // outside our lexical scope
   return {
-    module.publicMethod(privateMethod);
+   publicMethod: function(){
+     return privateMethod()
+   }
   };
 })();
-
+ module.publicMethod()
 
 
 ////////// PROBLEM 7 //////////
@@ -207,19 +210,20 @@ var module = (function() {
    secret number.
 */
 
-// function secretNumber() {
-//   var secret = 143;
+function secretNumber() {
+  let secret = 143;
 
-//   return {
-//   function addToSecret(){
-//     return secret += 1;
-//   };
-//   function takeAwayFromSecret(){
-//     return secret -= 1;
-//   }
-//   return secret
-//   };
-// }
+  return {
+    addToSecret: function(num){
+      secret += num
+      return secret
+    },
+    takeAwayFromSecret: function(num){
+      secret -= num
+      return secret
+    }
+  };
+}
 
 
 
@@ -243,11 +247,14 @@ var module = (function() {
   Fix the code below to log the desired output.
 */
 
-// function timeOutCounter() {
-//   for (var i = 0; i <= 5; i++) {
-//     setTimeout(function() {
-//       console.log(i);
-//     }, i * 1000);
-//   }
-// }
-// timeOutCounter();
+function timeOutCounter() {
+  for (var i = 0; i <= 5; i++) {
+    function giveIndex(index){
+    setTimeout(function() {
+      console.log(index);
+    }, index * 1000);
+  }
+  giveIndex(i)
+}
+}
+timeOutCounter();
